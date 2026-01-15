@@ -66,6 +66,11 @@ stdenvNoCC.mkDerivation rec {
       --set PATH $out/lib/uppaal:$PATH \
       --prefix _JAVA_OPTIONS " " "-Dawt.useSystemAAFontSettings=gasp"
 
+    chmod +x $out/lib/uppaal/bin/verifyta
+
+    makeWrapper $out/lib/uppaal/bin/verifyta $out/bin/verifyta \
+      --set PATH $out/lib/uppaal:$PATH
+
     runHook postInstall
   '';
 
